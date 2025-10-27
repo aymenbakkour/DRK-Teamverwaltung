@@ -47,9 +47,10 @@
 
   <!-- Main App Container -->
   <div id="app-container" class="p-4 md:p-7 min-h-screen hidden">
-      <div class="wrap max-w-screen-xl mx-auto flex flex-col lg:flex-row gap-4">
+      <div class="wrap max-w-screen-xl mx-auto">
         <main class="panel flex-grow bg-white rounded-xl p-5 shadow-lg shadow-slate-200/60">
-          <header class="flex items-center gap-4 mb-4">
+
+          <header class="flex items-center gap-4 mb-6">
             <div class="logo w-16 h-16 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-extrabold text-2xl flex-shrink-0">
               DRK
             </div>
@@ -59,30 +60,52 @@
             </div>
           </header>
 
-          <div class="controls flex flex-wrap gap-2 my-5">
-            <button id="new-entry-btn" class="btn-primary inline-flex items-center gap-2 px-4 py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors shadow-sm">
+          <!-- Date and Time -->
+          <div id="datetime-container" class="text-center mb-6 border-t border-slate-200 pt-6">
+            <p id="current-date" class="text-lg font-semibold text-slate-500"></p>
+            <p id="current-time" class="text-5xl font-extrabold text-teal-600 tracking-tight"></p>
+          </div>
+          
+          <!-- Notifications Container -->
+          <div id="notifications-container" class="my-6"></div>
+          
+          <!-- Statistics -->
+          <div id="stats-container" class="mb-6"></div>
+
+          <div class="controls flex flex-col md:flex-row md:items-center gap-3 my-5 border-t border-slate-200 pt-6">
+            <button id="new-entry-btn" class="btn-primary w-full md:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors shadow-sm">
               <!-- PlusIcon -->
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
               </svg>
               Neuer Eintrag
             </button>
-            <div class="ml-auto flex gap-2">
-              <button id="import-btn" class="btn-ghost inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-600 font-semibold rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
+          </div>
+
+          <!-- Tabs -->
+          <div id="tabs-container" class="flex flex-wrap gap-2 border-b border-slate-200 pb-3"></div>
+
+          <!-- Content Views -->
+          <div id="content-container" class="mt-4"></div>
+
+          <!-- Secondary Actions -->
+          <div class="secondary-controls mt-6 pt-6 border-t border-slate-200">
+            <div class="flex flex-col sm:flex-row gap-2 justify-end">
+              <button id="import-btn" class="btn-ghost w-full md:w-auto justify-center inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-600 font-semibold rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
                 <!-- ImportIcon -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
                 </svg>
                 Import
               </button>
-              <button id="export-btn" class="btn-ghost inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-600 font-semibold rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
+              <button id="export-btn" class="btn-ghost w-full md:w-auto justify-center inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-600 font-semibold rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
                 <!-- ExportIcon -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                 </svg>
                 Export
               </button>
-              <button id="logout-btn" class="btn-logout inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-600 font-semibold rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
+              <button id="logout-btn" class="btn-logout w-full md:w-auto justify-center inline-flex items-center gap-2 px-4 py-2 bg-white text-slate-600 font-semibold rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
                 <!-- LogoutIcon -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
@@ -92,19 +115,10 @@
             </div>
           </div>
 
-          <!-- Tabs -->
-          <div id="tabs-container" class="flex space-x-2 border-b border-slate-200 p-1"></div>
-
-          <!-- Content Views -->
-          <div id="content-container" class="mt-4"></div>
-
-          <footer class="text-center text-xs text-slate-400 pt-8">
+          <footer class="text-center text-xs text-slate-400 pt-8 mt-8 border-t border-slate-200">
             entwickelt von Aymen Bakkour
           </footer>
         </main>
-
-        <!-- Sidebar -->
-        <aside id="sidebar-container" class="side w-full lg:w-80 flex-shrink-0 flex flex-col gap-4"></aside>
       </div>
   </div>
 
@@ -147,7 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const importFileInput = document.getElementById('import-file-input');
   const tabsContainer = document.getElementById('tabs-container');
   const contentContainer = document.getElementById('content-container');
-  const sidebarContainer = document.getElementById('sidebar-container');
+  const statsContainer = document.getElementById('stats-container');
+  const notificationsContainer = document.getElementById('notifications-container');
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('modal-content');
   const modalTitle = document.getElementById('modal-title');
@@ -170,13 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const savedTransfers = localStorage.getItem('transfers');
       const savedNotes = localStorage.getItem('notes');
 
-      // If data exists in localStorage, use it. This preserves user changes.
       if (savedAppointments && savedTransfers && savedNotes) {
         state.appointments = JSON.parse(savedAppointments);
         state.transfers = JSON.parse(savedTransfers);
         state.notes = JSON.parse(savedNotes);
       } else {
-        // Otherwise, fetch initial data from data.json
         const response = await fetch('data.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -187,13 +200,11 @@ document.addEventListener('DOMContentLoaded', () => {
         state.transfers = initialData.transfers || [];
         state.notes = initialData.notes || [];
 
-        // And save the initial data to localStorage for the session
         saveState();
       }
     } catch (e) {
       console.error("Error loading state", e);
       alert('Fehler beim Laden der Daten. Die Anwendung wird mit einem leeren Zustand gestartet.');
-      // Fallback to empty state if both localStorage and fetch fail
       state.appointments = [];
       state.transfers = [];
       state.notes = [];
@@ -230,11 +241,22 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --- RENDERING ---
+  const updateDateTime = () => {
+    const now = new Date();
+    const dateEl = document.getElementById('current-date');
+    const timeEl = document.getElementById('current-time');
+    if (dateEl && timeEl) {
+        dateEl.textContent = now.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        timeEl.textContent = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    }
+  };
+
   const render = () => {
     if (!state.isAuthenticated) return;
+    updateDateTime();
     renderTabs();
     renderContent();
-    renderSidebar();
+    renderDashboardWidgets();
   };
   
   const renderTabs = () => {
@@ -243,18 +265,26 @@ document.addEventListener('DOMContentLoaded', () => {
           { id: 'transfers', label: 'Transfer', count: state.transfers.length, icon: Icons.Transfer() },
           { id: 'notes', label: 'Notizen', count: state.notes.length, icon: Icons.Note() }
       ];
+      
+      const tabColors = {
+          appointments: { bg: 'bg-sky-100', text: 'text-sky-700', badgeBg: 'bg-sky-600' },
+          transfers: { bg: 'bg-emerald-100', text: 'text-emerald-700', badgeBg: 'bg-emerald-600' },
+          notes: { bg: 'bg-amber-100', text: 'text-amber-700', badgeBg: 'bg-amber-600' }
+      };
 
       tabsContainer.innerHTML = tabs.map(tab => {
           const isActive = state.activeTab === tab.id;
+          const activeColorSet = tabColors[tab.id];
+
           const baseClasses = "flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-md transition-colors duration-200 cursor-pointer";
-          const activeClasses = "bg-teal-100 text-teal-700";
-          const inactiveClasses = "text-slate-500 hover:bg-slate-100";
+          const activeClasses = isActive ? `${activeColorSet.bg} ${activeColorSet.text}` : "text-slate-500 hover:bg-slate-100";
+          const badgeClasses = isActive ? `${activeColorSet.badgeBg} text-white` : 'bg-slate-200 text-slate-600';
           
           return `
-              <div data-tab="${tab.id}" class="${baseClasses} ${isActive ? activeClasses : inactiveClasses}">
+              <div data-tab="${tab.id}" class="${baseClasses} ${activeClasses}">
                   ${tab.icon}
                   ${tab.label}
-                  <span class="ml-1 px-2 py-0.5 text-xs rounded-full ${isActive ? 'bg-teal-600 text-white' : 'bg-slate-200 text-slate-600'}">
+                  <span class="ml-1 px-2 py-0.5 text-xs rounded-full ${badgeClasses}">
                       ${tab.count}
                   </span>
               </div>
@@ -280,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let content = `
         <div class="overflow-x-auto">
           <table class="w-full text-sm text-left text-slate-500">
-            <thead class="text-xs text-slate-700 uppercase bg-slate-50">
+            <thead class="text-xs text-sky-800 uppercase bg-sky-50">
               <tr>
                 <th class="px-6 py-3">Vorname</th>
                 <th class="px-6 py-3">Nachname</th>
@@ -319,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let content = `
       <div class="overflow-x-auto">
         <table class="w-full text-sm text-left text-slate-500">
-          <thead class="text-xs text-slate-700 uppercase bg-slate-50">
+          <thead class="text-xs text-emerald-800 uppercase bg-emerald-50">
             <tr>
               <th class="px-6 py-3">Name</th>
               <th class="px-6 py-3">Zimmernummer</th>
@@ -357,13 +387,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.notes.length > 0) {
       state.notes.forEach(note => {
         content += `
-          <div class="p-4 rounded-lg shadow-md flex flex-col ${note.isImportant ? 'bg-amber-50 border-amber-200 border' : 'bg-slate-50'}">
+          <div class="p-4 rounded-lg shadow-md flex flex-col bg-amber-50 border-amber-200 border">
             <div class="flex justify-between items-start">
               <h4 class="font-bold text-slate-800 mb-2">${note.title}</h4>
               ${note.isImportant ? Icons.Important() : ''}
             </div>
-            <p class="text-sm text-slate-600 flex-grow whitespace-pre-wrap">${note.content}</p>
-            <div class="flex justify-end items-center gap-2 mt-4 pt-3 border-t border-slate-200">
+            <p class="text-sm text-slate-600 flex-grow whitespace-pre-wrap break-words">${note.content}</p>
+            <div class="flex justify-end items-center gap-2 mt-4 pt-3 border-t border-amber-200">
               <span class="text-xs text-slate-400 mr-auto">${new Date(note.createdAt).toLocaleString('de-DE')}</span>
               <button data-action="edit" data-id="${note.id}" class="p-2 text-cyan-600 hover:bg-cyan-100 rounded-md">${Icons.Edit()}</button>
               <button data-action="delete" data-id="${note.id}" class="p-2 text-red-600 hover:bg-red-100 rounded-md">${Icons.Delete()}</button>
@@ -377,15 +407,37 @@ document.addEventListener('DOMContentLoaded', () => {
     contentContainer.innerHTML = content;
   };
 
-  const renderSidebar = () => {
+  const renderDashboardWidgets = () => {
+      // Stats Part
       const today = new Date().toISOString().split('T')[0];
+      const totalTodayAppointments = state.appointments.filter(a => a.date === today).length;
+
+      statsContainer.innerHTML = `
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div class="p-4 bg-slate-50 rounded-xl">
+              <div class="text-3xl font-bold text-teal-600">${state.appointments.length}</div>
+              <div class="text-sm text-slate-500">Termine</div>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl">
+              <div class="text-3xl font-bold text-teal-600">${state.transfers.length}</div>
+              <div class="text-sm text-slate-500">Transfers</div>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl">
+              <div class="text-3xl font-bold text-teal-600">${state.notes.length}</div>
+              <div class="text-sm text-slate-500">Notizen</div>
+          </div>
+          <div class="p-4 bg-teal-50 rounded-xl">
+              <div class="text-3xl font-bold text-teal-700">${totalTodayAppointments}</div>
+              <div class="text-sm text-slate-600">Termine Heute</div>
+          </div>
+      </div>
+      `;
+
+      // Notifications Part
       const todayAppointments = state.appointments.filter(a => a.createdAt.startsWith(today));
       const todayTransfers = state.transfers.filter(t => t.createdAt.startsWith(today));
       const todayImportantNotes = state.notes.filter(n => n.isImportant && n.createdAt.startsWith(today));
       
-      const totalItems = state.appointments.length + state.transfers.length + state.notes.length;
-      const totalTodayAppointments = state.appointments.filter(a => a.date === today).length;
-
       let notificationsHTML = '';
       todayAppointments.forEach(a => notificationsHTML += `
           <div class="text-xs p-2 bg-slate-50 rounded-md">
@@ -403,38 +455,15 @@ document.addEventListener('DOMContentLoaded', () => {
               <p class="text-amber-700">${n.title}</p>
           </div>`);
       if (notificationsHTML === '') {
-          notificationsHTML = `<p class="text-xs text-slate-400 text-center py-4">Keine neuen Meldungen für heute.</p>`;
+          notificationsHTML = `<p class="text-sm text-slate-400 text-center py-4">Keine neuen Meldungen für heute.</p>`;
       }
 
-      sidebarContainer.innerHTML = `
-        <div class="card bg-white rounded-xl p-4 shadow-lg shadow-slate-200/60">
-          <h4 class="font-bold mb-3">Statistiken</h4>
-          <div class="flex justify-between text-center">
-            <div>
-              <div class="text-2xl font-bold text-teal-600">${totalItems}</div>
-              <div class="text-xs text-slate-500">Gesamt</div>
-            </div>
-            <div>
-              <div class="text-2xl font-bold text-teal-600">${totalTodayAppointments}</div>
-              <div class="text-xs text-slate-500">Termine Heute</div>
-            </div>
-          </div>
-        </div>
-
+      notificationsContainer.innerHTML = `
         <div class="card bg-white rounded-xl p-4 shadow-lg shadow-slate-200/60">
           <h4 class="font-bold mb-3">Heutige Meldungen</h4>
           <div class="space-y-3 max-h-64 overflow-y-auto pr-2">${notificationsHTML}</div>
         </div>
-        
-        <div class="card bg-white rounded-xl p-4 shadow-lg shadow-slate-200/60">
-          <h4 class="font-bold mb-3">Schnelle Aktionen</h4>
-          <button id="clear-all-btn" class="w-full py-2 px-4 bg-red-100 text-red-700 font-semibold rounded-lg hover:bg-red-200 transition-colors">
-            Alle Daten löschen
-          </button>
-        </div>
       `;
-      // Re-attach listener for the clear all button
-      document.getElementById('clear-all-btn').addEventListener('click', clearAllData);
   };
   
   // --- MODAL & FORM LOGIC ---
@@ -656,6 +685,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   modalForm.addEventListener('submit', handleFormSubmit);
 
+  // Set up clock
+  setInterval(updateDateTime, 1000 * 30); // Update every 30 seconds is enough
 });
 </script>
 
